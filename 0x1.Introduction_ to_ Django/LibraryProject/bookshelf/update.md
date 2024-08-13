@@ -2,5 +2,5 @@
 
 - **Command**:
   ```python
-  Book.title = "Nineteen Eighty-Four"
+ book.title = "Nineteen Eighty-Four"
   Book.save()
