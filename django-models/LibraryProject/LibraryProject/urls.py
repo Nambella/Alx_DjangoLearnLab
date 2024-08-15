@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import relationship_app
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
@@ -24,6 +26,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("Books/", include("bookshelf.urls")),
+    path("Books/", include(relationship_app.urls)),
     path("admin/", admin.site.urls)
 ]
