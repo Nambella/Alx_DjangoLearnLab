@@ -8,6 +8,23 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import user_passes_test
 from .models import UserProfile
+from django.contrib.auth.decorators import permission_required
+
+@permission_required("relationship_app.can_add_book")
+def add_book(request):
+    # Your book creation logic here
+    return render(request, 'add_book.html')
+
+@permission_required("relationship_app.can_change_book")
+def edit_book(request, book_id):
+    # Your book editing logic here
+    return render(request, 'edit_book.html')
+
+@permission_required("relationship_app.can_delete_book")
+def delete_book(request, book_id):
+    # Your book deletion logic here
+    return render(request, 'delete_book.html')
+
 def has_admin_permissions(user):
     return user.userprofile.role == 'Admin' and user.userprofile.can_view_admin_panel
 
