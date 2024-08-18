@@ -1,10 +1,9 @@
-# myproject/urls.py
 from django.contrib import admin
-from django.urls import path, include; 'relationship_app.urls',
+from django.urls import include, path
 
-# myproject/urls.py
 urlpatterns = [
-    path('', include ('relationship_app.urls')),
-    # Other URL patterns...
+    path('admin/', admin.site.urls),
+    path('', include('relationship_app.urls')),
 ]
+
 
