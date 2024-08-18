@@ -10,7 +10,6 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100, default='Unknown Author')
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
