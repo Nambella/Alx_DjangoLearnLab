@@ -11,3 +11,4 @@ class LibraryDetailView(ListView):
         library_id = self.kwargs['library_id']
         return Book.objects.all.filter(library__id=library_id)
 "relationship_app/list_books.html", "Book.objects.all()"
+["relationship_app/library_detail.html"]
