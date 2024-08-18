@@ -8,7 +8,13 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import user_passes_test
 from .models import UserProfile
+def has_admin_permissions(user):
+    return user.userprofile.role == 'Admin' and user.userprofile.can_view_admin_panel
 
+@user_passes_test(has_admin_permissions)
+def admin_view(request):
+    # Your admin view logic here
+    return render(request, 'admin_view.html')
 def is_admin(user):
     return user.userprofile.role == 'Admin'
 
