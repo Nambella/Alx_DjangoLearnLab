@@ -9,11 +9,10 @@ class UserProfile(models.Model):
         ('Librarian', 'Librarian'),
         ('Member', 'Member'),
     )
-    can_view_admin_panel = models.BooleanField(default=False)
-    can_manage_users = models.BooleanField(default=False)
+        
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=ROLES)
-
+    can_view_admin_panel = models.BooleanField(default=False)
 class Author(models.Model):
     name = models.CharField(max_length=100)
 
@@ -40,5 +39,6 @@ class Librarian(models.Model):
 
     def __str__(self):
         return self.name
+
 
 

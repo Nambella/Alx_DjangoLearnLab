@@ -4,11 +4,8 @@ app_name = 'relationship_app'
 # relationship_app/urls.py
 from django.urls import path
 from .views import admin_view, librarian_view, member_view
-urlpatterns = [
-    # Other patterns...
-    path('admin/', admin_view, name='admin-view'),
-]
-
+  
+    
 urlpatterns = [
     path('admin/', admin_view, name='admin-view'),
     path('librarian/', librarian_view, name='librarian-view'),
