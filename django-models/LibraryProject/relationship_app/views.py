@@ -3,7 +3,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from .models import Library, Book
 from .models import Book
-
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 class LibraryDetailView(ListView):
     model = Book
