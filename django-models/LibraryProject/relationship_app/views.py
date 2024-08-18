@@ -9,4 +9,4 @@ class LibraryDetailView(ListView):
 
     def get_queryset(self):
         library_id = self.kwargs['library_id']
-        return Book.objects.filter(library__id=library_id)
+        return Book.objects.all.filter(library__id=library_id)
