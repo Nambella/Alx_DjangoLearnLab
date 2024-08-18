@@ -1,4 +1,5 @@
 # relationship_app/views.py
+from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from .models import Library, Book
 
