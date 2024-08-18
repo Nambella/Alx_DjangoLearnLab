@@ -3,6 +3,13 @@ app_name = 'relationship_app'
 
 # relationship_app/urls.py
 from django.urls import path
+from .views import admin_view, librarian_view, member_view
+
+urlpatterns = [
+    path('admin/', admin_view, name='admin-view'),
+    path('librarian/', librarian_view, name='librarian-view'),
+    path('member/', member_view, name='member-view'),
+]
 from .views import list_books, LibraryDetailView
 "views.register", "LogoutView.as_view(template_name="
 urlpatterns = [
