@@ -14,6 +14,7 @@ urlpatterns = [
 ]
 
 from django.contrib.auth import views as auth_views
+path('register/', auth_views.RegisterView.as_view(template_name='registration/register.html'), name='register'),
 
 urlpatterns = [
     # ...
@@ -21,4 +22,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
     # Add other authentication views here...
+
 ]
