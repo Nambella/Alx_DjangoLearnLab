@@ -1,39 +1,37 @@
-# query_samples.py
+# relationship_app/query_samples.py
 
-from relationship_app.models import Author, Book, Library
+from relationship_app.models import Author, Book, Library, Librarian
 
-def query_books_by_author(author_name):
-    try:
-        author = Author.objects.get(name=author_name)
-        books_by_author = Book.objects.filter(author=author)
-        print(f"Books by {author_name}:")
-        for book in books_by_author:
-            print(f"- {book.title}")
-    except Author.DoesNotExist:
-        print(f"Author '{author_name}' not found.")
+# Query all books by a specific author
+def get_books_by_author(author_name):
+    author = Author.objects.get(name=author_name)
+    books_by_author = Book.objects.filter(author=author)
+    return books_by_author
 
-def list_all_books_in_library(library_name):
-    try:
-        library = Library.objects.get(name=library_name)
-        all_books = Book.objects.filter(library=library)
-        print(f"Books in {library_name}:")
-        for book in all_books:
-            print(f"- {book.title}")
-    except Library.DoesNotExist:
-        print(f"Library '{library_name}' not found.")
+# List all books in a library
+def get_all_books_in_library(library_name):
+    library = Library.objects.get(name=library_name)
+    all_books_in_library = library.books.all()
+    return all_books_in_library
 
-def retrieve_librarian_for_library(library_name):
-    try:
-        library = Library.objects.get(name=library_name)
-        print(f"Librarian for {library_name}: {library.librarian}")
-    except Library.DoesNotExist:
-        print(f"Library '{library_name}' not found.")
+# Retrieve the librarian for a library
+def get_librarian_for_library(library_name):
+    librarian = Librarian.objects.get(library__name=library_name)
+    return librarian
 
 # Example usage:
 if __name__ == "__main__":
-    query_books_by_author("J.K. Rowling")
-    list_all_books_in_library("Central Library")
-    retrieve_librarian_for_library("Central Library")
+    # Replace with actual names
+    author_name = "J.K. Rowling"
+    library_name = "Hogwarts Library"
+
+    books_by_author = get_books_by_author(author_name)
+    all_books_in_library = get_all_books_in_library(library_name)
+    librarian = get_librarian_for_library(library_name)
+
+    print(f"Books by {author_name}: {books_by_author}")
+    print(f"All books in {library_name}: {all_books_in_library}")
+    print(f"Librarian for {library_name}: {librarian}")
 
 
 
