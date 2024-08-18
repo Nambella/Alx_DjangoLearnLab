@@ -7,5 +7,5 @@ from .models import models # Import your model(s)
 
 def my_view(request):
     # Your view logic here
-    queryset = YourModel.objects.all()
+    queryset = models.objects.all()
     return render(request, 'your_template.html', {'queryset': queryset})
