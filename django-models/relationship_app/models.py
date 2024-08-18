@@ -9,7 +9,8 @@ class UserProfile(models.Model):
         ('Librarian', 'Librarian'),
         ('Member', 'Member'),
     )
-
+    can_view_admin_panel = models.BooleanField(default=False)
+    can_manage_users = models.BooleanField(default=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=ROLES)
 
