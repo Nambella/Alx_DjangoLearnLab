@@ -30,6 +30,8 @@ def librarian_view(request):
 def member_view(request):
     # Your member view logic here
     return render(request, 'member_view.html')
+
+
 class LibraryDetailView(ListView):
     model = Book
     template_name = 'relationship_app/library_detail.html'
