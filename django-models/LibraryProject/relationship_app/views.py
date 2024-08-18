@@ -30,6 +30,12 @@ def librarian_view(request):
 def member_view(request):
     # Your member view logic here
     return render(request, 'member_view.html')
+def create_admin_user(username, password):
+    user = user.objects.create_user(username=username, password=password)
+    user_profile = UserProfile.objects.create(user=user, role='Admin')
+    user_profile.can_view_admin_panel = True
+    user_profile.can_manage_users = True
+    user_profile.save()
 
 
 class LibraryDetailView(ListView):
