@@ -4,7 +4,7 @@ app_name = 'relationship_app'
 # relationship_app/urls.py
 from django.urls import path
 from .views import list_books, LibraryDetailView
-
+"views.register", "LogoutView.as_view(template_name="
 urlpatterns = [
     # Function-based view
     path('books/', list_books, name='book-list'),
