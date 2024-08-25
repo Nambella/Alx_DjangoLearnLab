@@ -17,3 +17,11 @@ def create_admin_user(username, password):
     user_profile = user_profile.objects.create(user=user, role='Admin')
     user_profile.can_view_admin_panel = True
     user_profile.save()
+from django.contrib import admin
+from .models import CustomUser
+
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'date_of_birth', 'profile_photo')
+    # Add other fields you want to display in the admin list view
+
+admin.site.register(CustomUser, CustomUserAdmin)
