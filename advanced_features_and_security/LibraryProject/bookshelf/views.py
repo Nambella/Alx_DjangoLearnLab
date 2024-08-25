@@ -9,6 +9,20 @@ def edit_view(request):
     pass
 from django.views.generic import ListView
 from .models import Book
+from .forms import ExampleForm
+from django.shortcuts import render
+
+def my_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            # Process the form data (e.g., save to database)
+            # Redirect to a success page or render a template
+            pass
+    else:
+        form = ExampleForm()
+
+    return render(request, 'book_list.html', {'form': form})
 
 class BookListView(ListView):
     model = Book
