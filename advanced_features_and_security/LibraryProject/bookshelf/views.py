@@ -22,7 +22,7 @@ def my_view(request):
     else:
         form = ExampleForm()
 
-    return render(request, 'form_example.html', {'form': form})
+    return render(request, 'book_list.html', {'form': form})
 
 class BookListView(ListView):
     model = Book
