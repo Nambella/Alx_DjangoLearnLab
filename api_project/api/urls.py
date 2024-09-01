@@ -8,5 +8,5 @@ router = DefaultRouter ()
 router.register(r'books', BookViewSet)
 
 urlpatterns = [
-    path('DefaultRouter', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
