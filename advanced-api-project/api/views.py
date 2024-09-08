@@ -5,17 +5,17 @@ from django.shortcuts import render
 from rest_framework import serializers
 
 from api.models import Book
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class BookCreate(Generic.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer # type: ignore
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class BookUpdate(Generic.UpdateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer # type: ignore
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class BookSerializer(serializers.ModelSerializer):
