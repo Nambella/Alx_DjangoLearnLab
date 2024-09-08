@@ -2,6 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from .models import Author, Book
+from django.contrib.auth.models import User
 
 class BookTests(APITestCase):
     def setUp(self):
@@ -14,6 +15,14 @@ class BookTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data['title'], 'New Book')
+    def setUp(self):
+        # Create a user and log in
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.login(username='testuser', password='testpassword')
+        
+        # Create an author and a book
+        self.author = Author.objects.create(name="J.K. Rowling")
+        self.book = Book.objects.create(title="Harry Potter", publication_year=1997, author=self.author)
 
     def test_retrieve_book(self):
         url = reverse('book-retrieve-update-destroy', args=[self.book.id])
