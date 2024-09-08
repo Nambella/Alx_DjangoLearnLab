@@ -28,11 +28,17 @@ class BookSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Publication year cannot be in the future.")
         return value
 class BookListCreate(Generic.ListCreateAPIView):
+    """
+    View to list all books and create a new book.
+    """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 class BookRetrieveUpdateDestroy(Generic.RetrieveUpdateDestroyAPIView):
+    """
+    View to retrieve, update, or delete a book by ID.
+    """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
