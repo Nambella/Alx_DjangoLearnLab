@@ -27,3 +27,12 @@ class BookSerializer(serializers.ModelSerializer):
         if value > datetime.date.today().year:
             raise serializers.ValidationError("Publication year cannot be in the future.")
         return value
+class BookListCreate(Generic.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+class BookRetrieveUpdateDestroy(Generic.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
