@@ -34,6 +34,7 @@ class BookListCreate(Generic.ListCreateAPIView):
     "ListView"
     """
     View to list all books and create a new book.
+    supports filtering, searching,and ordering.
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
