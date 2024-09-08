@@ -28,7 +28,7 @@ class BookSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Publication year cannot be in the future.")
         return value
 class BookListCreate(Generic.ListCreateAPIView):
-    "list view"
+    "listView"
     """
     View to list all books and create a new book.
     """
