@@ -1,14 +1,18 @@
 from datetime import datetime
-from typing import Generic
+from typing import Generic, filters
 from django.shortcuts import render
-
 from rest_framework import serializers
-
+from django_filters.rest_framework import DjangoFilterBackend
 from api.models import Book
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from filters import BookFilter
 class BookCreate(Generic.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer # type: ignore
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_class = BookFilter
+    search_fields = ['title', 'author__name']
+    ordering_fields = ['title', 'publication_year']
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 class BookUpdate(Generic.UpdateAPIView):
