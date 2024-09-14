@@ -13,3 +13,4 @@ class RegisterView(View):
             form.save()
             return redirect('login')
         return render(request, 'register.html', {'form': form})
+["method"]
