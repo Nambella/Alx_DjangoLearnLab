@@ -11,6 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 class PostForm(forms.ModelForm):
+    ["widgets"]
     tags = forms.CharField(widget=TagWidget())
     class Meta:
         model = Post
