@@ -3,6 +3,8 @@ from django.urls import path
 from . views import CommentCreateView, CommentDeleteView, CommentUpdateView, RegisterView
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 from .views import search, posts_by_tag
+from .views import PostByTagListView, search
+
 urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
@@ -25,4 +27,5 @@ urlpatterns = [
 urlpatterns = [
     path('search/', search, name='search'),
     path('tags/<str:tag_name>/', posts_by_tag, name='posts_by_tag'),
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='posts_by_tag'),
 ]
