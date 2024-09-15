@@ -19,5 +19,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+class Post(models.Model):
+    # existing fields
+    tags = models.ManyToManyField(Tag, related_name='posts')
+
 def __str__(self):
         return f'Comment by {self.author} on {self.post}'
