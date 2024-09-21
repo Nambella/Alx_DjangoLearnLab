@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from .models import Post, Like
+from notifications.models import Notification
 
 User = get_user_model()
 class PostViewSet(viewsets.ModelViewSet):
@@ -54,3 +56,30 @@ class UnfollowUserView(generics.GenericAPIView):
         user_to_unfollow = get_object_or_404(User, id=user_id)
         request.user.following.remove(user_to_unfollow)
         return Response({'status': 'unfollowed'}, status=status.HTTP_200_OK)   
+
+class LikePostView(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        like, created = Like.objects.get_or_create(user=request.user, post=post)
+        if created:
+            Notification.objects.create(
+                recipient=post.author,
+                actor=request.user,
+                verb='liked your post',
+                target=post
+            )
+            return Response({'status': 'liked'}, status=status.HTTP_200_OK)
+        return Response({'status': 'already liked'}, status=status.HTTP_400_BAD_REQUEST)
+
+class UnlikePostView(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        like = Like.objects.filter(user=request.user, post=post).first()
+        if like:
+            like.delete()
+            return Response({'status': 'unliked'}, status=status.HTTP_200_OK)
+        return Response({'status': 'not liked'}, status=status.HTTP_400_BAD_REQUEST)
