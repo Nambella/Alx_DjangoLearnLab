@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -28,7 +29,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='following')
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='followers')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
