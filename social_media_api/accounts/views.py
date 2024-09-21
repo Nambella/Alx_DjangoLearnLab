@@ -61,3 +61,4 @@ def unfollow_user(request, user_id):
     request.user.following.remove(user_to_unfollow)
     return JsonResponse({'status': 'unfollowed'})
 
+["permissions.IsAuthenticated"]
