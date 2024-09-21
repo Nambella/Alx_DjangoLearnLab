@@ -19,7 +19,7 @@ from rest_framework.response import Response
 User = get_user_model()
 
 class FollowUserView(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated]
+    permissions_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
         user_to_follow = get_object_or_404(User, id=user_id)
@@ -27,7 +27,7 @@ class FollowUserView(generics.GenericAPIView):
         return Response({'status': 'followed'}, status=status.HTTP_200_OK)
 
 class UnfollowUserView(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated]
+    permissions_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
         user_to_unfollow = get_object_or_404(User, id=user_id)
