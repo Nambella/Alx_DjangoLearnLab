@@ -29,7 +29,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
-    followers = models.ManyToManyField('self', symmetrical=False, related_name='followers')
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='following')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
